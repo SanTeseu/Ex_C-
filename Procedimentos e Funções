@@ -1,0 +1,215 @@
+Atividade Lógica C - Procedimentos e Funções
+
+1) Crie uma função que recebe como parâmetro um número inteiro e devolve o seu dobro.
+R.
+#include <stdio.h>
+int dobro(int numero) {
+    return numero * 2;
+}
+
+
+int main() {
+    int numero, result;
+    printf("informe um numero: ");
+    scanf("%d", &numero);
+    result = dobro(numero);
+    printf("O dobro de %d é %d.\n", numero, result);
+    return 0;
+}
+
+
+2) Faça uma função que receba a data atual (dia, mês e ano em inteiro) e exiba-a na tela no formato textual por extenso. Exemplo: Data: 01/01/2000, Imprimir: 1 de janeiro de 2000.
+R.
+#include <stdio.h>
+void extenso(int dia, int mes, int ano) {
+    const char * meses[] = {
+        "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+    };
+    printf("%d de %s de %d\n", dia, meses[mes - 1], ano);
+}
+
+
+
+int main() {
+    int dia, mes, ano;
+    printf("data (dia, mês e ano):\n");
+    printf("dia: ");
+    scanf("%d", &dia);
+    printf("mês: ");
+    scanf("%d", &mes);
+    printf("ano: ");
+    scanf("%d", &ano);
+    extenso(dia, mes, ano);
+    return 0;
+}
+
+
+3) Faça uma função que receba 3 números inteiros como parâmetro, representando horas, minutos e segundos, e os converta em segundos.
+R.
+#include <stdio.h>
+int converte_segundos(int hr, int min, int seg) {
+    return (hr * 3600) + (min * 60) + seg;
+}
+
+
+int main() {
+    int hr, total_seg, min, seg;
+    printf("digite as horas: ");
+    scanf("%d", &hr);
+    printf("digite os minutos: ");
+    scanf("%d", &min);
+    printf("digite os segundos: ");
+    scanf("%d", &seg);
+    total_seg = converte_segundos(hr, min, seg);
+    printf("total em segundos: %d\n", total_seg);
+    return 0;
+}
+
+
+4) Faça uma função que receba uma temperatura em graus Celsius e retorne-a convertida em graus Fahrenheit. A fórmula de conversão é: 𝐹 = 𝐶 ∗ (9.0/5.0) + 32.0, sendo F a temperatura em Fahrenheit e C a temperatura em Celsius.
+R.
+#include <stdio.h>
+float converte(float celsius) {
+    return celsius * (9.0 / 5.0) + 32.0;}
+    
+    
+int main() {
+    float celsius, fahrenheit;
+    printf("informe a temperatura em graus celsius: ");
+    scanf("%f", &fahrenheit);
+    fahrenheit = converte(celsius);
+    printf("temperatura em Fahrenheit: %.2f\n", fahrenheit);
+    return 0;
+}
+
+
+5) Crie um programa que receba três valores (obrigatoriamente maiores que zero), representando as medidas dos três lados de um triângulo. Elabore funções para:
+
+a) Determinar se eles lados formam um triângulo, sabendo que: 
+O comprimento de cada lado de um triângulo é menor do que a soma dos outros dois
+lados.
+
+b) Determinar e mostrar o tipo de triângulo, caso as medidas formem um triângulo. Sendo que:
+ Chama-se equilátero o triângulo que tem três lados iguais.
+ Denominam-se isósceles o triângulo que tem o comprimento de dois lados iguais.
+ Recebe o nome de escaleno o triângulo que tem os três lados diferentes.
+R.
+#include <stdio.h>
+int checartri(float a, float b, float c) {
+    return (a + b > c) + (a + c > b)+ (b + c > a);
+}
+const char* tipoTriangulo(float a, float b, float c) {
+    if (a == b+ b == c) {
+        return "equilatero";
+    } else if (a == b or a == c or b == c) {
+        return "isoceles";
+    } else {
+        return "scaleno";
+    }
+}
+
+
+int main() {
+    float lado1, lado2, lado3;
+    printf("digite o comprimento do lado 1 (maior que zero): ");
+    scanf("%f", &lado1);
+    printf("digite o comprimento do lado 2 (maior que zero): ");
+    scanf("%f", &lado2);
+    printf("digite o comprimento do lado 3 (maior que zero): ");
+    scanf("%f", &lado3);
+    if (lado1 <= 0 )
+    return 0;
+}
+
+6) Faça uma função que receba dois números inteiros positivos por parâmetro e retorne a soma dos N números inteiros existentes entre eles.
+R.
+#include <stdio.h>
+int soma1(int a, int b) {
+    int soma2 = 0;
+    if (a > b) {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+    for (int i = a + 1; i < b; i++) {
+        soma2 += i;
+    }
+    return soma2;
+}
+
+
+int main() {
+    int numero1, numero2;
+    printf("infomre o primeiro número inteiro positivo: ");
+    scanf("%d", &numero1);
+    printf("infomme o segundo número : ");
+    scanf("%d", &numero2);
+    if (numero1 <= 0 or numero2 <= 0) {
+        printf("so númerosn inteiros positivos.\n");
+        return 1; 
+    }
+    int resultado = soma1(numero1, numero2);
+    printf("A soma entre %d e %d é: %d\n", numero1, numero2, resultado);
+    return 0;
+}
+
+
+7) Faça uma função que receba um vetor de reais e retorne a média dele.
+R.
+#include <stdio.h>
+float media1(int tamanho, float vetor[]) {
+    float soma = 0.0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += vetor[i];
+    }
+    return soma / tamanho;
+}
+
+
+int main() {
+    int n;
+    n = 0;
+    printf("infomre os elementos do vetor: ");
+    scanf("%d", &n);
+    if (n <= 0) {
+        printf("numero inteiro positivo do vetor.\n");
+        return 1; 
+    }
+    float vetor[n]; 
+    for (int i = 0; i < n; i++) {
+        printf("informe o valor %d: ", i + 1);
+        scanf("%f", &vetor[i]);
+    }
+    float media2 = media1(vetor, n);
+    printf("A média dos valores do vetor é: %.2f\n", media2);
+    return 0;
+}
+
+
+8) Faça uma função que receba uma matriz de 3 x 3 elementos. Calcule a soma dos elementos que estão acima da diagonal principal.
+R.
+#include <stdio.h>
+int somadiagonal(int matriz[3][3]) {
+    int soma;
+    soma = matriz[0][1] + matriz[0][2] + matriz[1][2];
+    return soma;
+}
+
+int main(){
+   int matriz[3][3];
+   int i, j;
+   printf("digite os vlores da matriz 3x3:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("matriz [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+
+
+
+
+
