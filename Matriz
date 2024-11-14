@@ -1,0 +1,687 @@
+Atividade Lógica C - Matrizes
+
+1) Leia uma matriz 4 x 4, conte e escreva quantos valores maiores que 10 ela possui.
+R.
+#include <stdio.h>
+
+int main() {
+    int matriz[4][4];
+    int i, j;
+    int cont = 0;    
+    printf("Informe os valores da matriz 4x4:\n");
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            printf("Valor [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }    
+         for (i = 0; i < 4; i++) {
+         for (j = 0; j < 4; j++) {
+            if (matriz[i][j] > 10) {
+                cont++;
+            }
+        }
+    }   
+    printf("existem %d valores maiores que 10.\n", cont);
+    return 0;
+}
+
+
+2) Declare uma matriz 5 x 5. Preencha com 1 a diagonal principal e com 0 os demais elementos. Escreva ao final a matriz obtida.
+R.
+#include <stdio.h>
+
+int main() {
+    int matriz[5][5];
+    int i, j;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (i == j) {
+                matriz[i][j] = 1; 
+            } else {
+                matriz[i][j] = 0; 
+            }
+        }
+    }
+    printf("Matriz:\n");
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n"); 
+    }
+    return 0;
+}
+
+
+3) Faça um programa que preenche uma matriz com o produto do valor da linha e da coluna de cada elemento. Em seguida, imprima na tela a matriz.
+R.
+#include <stdio.h>
+
+int main() {
+    int matriz[5][5];
+    int i, j;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            matriz[i][j] = i * j; 
+        }
+    }
+    printf("indice linha X indice coluna\n");
+    for (i= 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+4) Leia uma matriz 4 x 4, imprima a matriz e retorne a localização (linha e a coluna) do maior valor.
+R.
+#include <stdio.h>
+
+int main() {
+    int matriz[4][4];
+    int i, j;
+    int maiorValor;
+    int linhaMaior, colunaMaior;
+    printf("Digite osvalores da matriz x4:\n");
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            printf("Valore [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+    maiorValor = matriz[0][0];
+    linhaMaior = 0;
+    colunaMaior = 0;
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            if (matriz[i][j] > maiorValor) {
+                maiorValor = matriz[i][j];
+                linhaMaior = i;
+                colunaMaior = j;
+            }
+        }
+    }
+    printf("\nx4:\n");
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n"); 
+    }
+    printf("\nMaior valor é %d, que foi localizado na linha %d e coluna %d.\n", maiorValor, linhaMaior + 1, colunaMaior + 1);
+    return 0;
+}
+
+
+5) Leia uma matriz 5 x 5. Leia também um valor X. O programa deverá fazer uma busca desse valor na matriz e, ao final, escrever a localização (linha e coluna) ou uma mensagem de não encontrado.
+R.
+#include <stdio.h>
+
+int main() {
+    int matriz[5][5];
+    int i, j;
+    int valor;
+    int valor_encontrado = 0;
+    int linha_encontrada, coluna_encontrada;
+    printf("matriz 5x5:\n");
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            printf("valor [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+    printf("Digite o valor a ser buscado na matriz: ");
+    scanf("%d", &valor);
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (matriz[i][j] == valor) {
+                valor_encontrado = 1; // Valor encontrado
+                linha_encontrada = i;
+                coluna_encontrada = j;
+                break; 
+            }
+        }
+        if (valor_encontrado) {
+            break; 
+        }
+    }
+    if (valor_encontrado) {
+        printf("O valor %d foi achado na linha %d e coluna %d.\n", valor, linha_encontrada + 1, coluna_encontrada + 1);
+    } else {
+        printf("O valor %d não existe.\n", valor);
+    }
+    return 0;
+}
+
+
+6) Leia duas matrizes 4 x 4 e escreva uma terceira com os maiores valores de cada posição entre as matrizes anteriores.
+R.
+#include <stdio.h>
+#include <locale.h>
+ 
+int main ( ) {
+	setlocale(LC_ALL, "Portuguese");
+	
+	int M1[4][4], M2[4][4], M3[4][4];
+	int i,j;
+	
+	printf("\n::::ENTRADA DA PRIMEIRA MATRIZ::::\n");
+	for (i=0; i<4; i++)
+		for (j=0; j<4; j++) {
+		  printf("\nM1[%d][%d]=",i,j);
+		  scanf("%d",&M1[i][j]); 	
+	}
+	printf("\n::::ENTRADA DA SEGUNDA MATRIZ::::\n");
+	for (i=0; i<4; i++)
+		for (j=0; j<4; j++) {
+		  printf("\nM2[%d][%d]=",i,j);
+		  scanf("%d",&M2[i][j]); 	
+	}
+	printf("\n\n::::RESULTADO DAS COMPARAÇÕES::::\n");
+	for (i=0; i<4; i++)
+		for (j=0; j<4; j++) {
+			if (M1[i][j]>M2[i][j]) 
+			  M3[i][j]=M1[i][j];
+			else M3[i][j]=M2[i][j];
+		    printf("\nO maior elemento da posição [%d][%d] é: %d",i,j,M3[i][j]); 
+	}
+}
+ 
+7) Leia uma matriz de 3 x 3 elementos. Calcule a soma dos elementos que estão acima da diagonal principal.
+R.
+#include <stdio.h>
+
+int main() {
+    int matriz[3][3];
+    int i, j;
+    int soma = 0;
+
+    
+    printf("Digite os valores da matriz 3x3:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("matriz [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            if (j > i) {
+                soma += matriz[i][j];
+            }
+        }
+    }
+    printf("a soma dos elementos que estão acima da diagonal principal é: %d\n", soma);
+    return 0;
+}
+
+
+8) Leia uma matriz de 3 x 3 elementos. Calcule a soma dos elementos que estão abaixo da diagonal principal.
+R.
+#include <stdio.h>
+int main() {
+    int matriz[3][3];
+    int i, j;
+    int soma = 0;
+    printf("digite os vlores da matriz 3x3:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("matriz [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            if (j < i) { 
+                soma += matriz[i][j];
+            }
+        }
+    }
+    printf("A soma dos elementos abaixo da diagonal principal é: %d\n", soma);
+    return 0;
+}
+
+
+9) Leia uma matriz de 3 x 3 elementos. Calcule a soma dos elementos que estão na diagonal principal.
+R.
+#include <stdio.h>
+int main() {
+    int matriz[3][3];
+    int i, j;
+    int soma = 0;
+    printf("digite os valore da matrix 3x3:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("matriz [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+    for (i = 0; i < 3; i++) {
+        soma += matriz[i][i]; 
+    }
+    printf("a soma dos elementos na diagonal principal é: %d\n", soma);
+    return 0;
+}
+
+10)Leia uma matriz de 3 x 3 elementos. Calcule e imprima a sua transposta.
+R.
+#include <stdio.h>
+int main() {
+    int matriz[3][3];
+    int matriz_trocada[3][3];
+    int i, j;
+    printf("digite os valores dda matriz 3x3:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("valores [%d][%d]:\n ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            matriz_trocada[j][i] = matriz[i][j]; 
+        }
+    }
+    printf("\nmatriz original:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n\n");
+    }
+    printf("\nmatriz invertida:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("%d ", matriz_trocada[i][j]);
+        }
+        printf("\n\n");
+    }
+    return 0;
+}
+
+
+11)Gere matriz 4 x 4 com valores no intervalo [1, 20]. Escreva um programa que transforme a matriz gerada numa matriz triangular inferior, ou seja, atribuindo zero a todos os elementos acima da diagonal principal. Imprima a matriz original e a matriz transformada.
+R.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define SIZE 4
+int main() {
+    int matriz[SIZE][SIZE];
+    int matrizesquisita[SIZE][SIZE];
+    int i, j;
+    srand(time(NULL));
+    printf("martiz normal:\n");
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            matriz[i][j] = (rand() % 20) + 1; 
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n\n");
+    }
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            if (j > i) {
+                matrizesquisita[i][j] = 0; 
+            } else {
+                matrizesquisita[i][j] = matrizesquisita[i][j]; 
+            }
+        }
+    }
+    printf("\nmti:\n");
+    for (i = 0; i < matriz[i][j]; i++) {
+        for (j = 0; j < SIZE; j++) {
+            printf("%d ", matrizesquisita[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+    //nao consigo fazer funcionar
+    //agr funciona mas ta errado kkkkkkkkkkkk   kkkkkkkkKKKKKKKKKKKKK
+    //nem com chatgpt meu irmaokkkkkkkk
+    //fui derrotado
+}
+
+12)Faça um programa para gerar automaticamente números entre 0 e 99 de uma cartela de bingo. Sabendo que cada cartela deverá conter 5 linhas de 5 números, gere estes dados de modo a não ter números repetidos dentro das cartelas. O programa deve exibir na tela a
+R.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define a 5
+#define b 5
+#define numero_maximo 100
+
+int main() {
+    int bingo[a][b];
+    int controlador[numero_maximo] = {0}; 
+    int numero, i, j, i_contador_2 = 0;
+
+    srand(time(NULL));
+    for (i = 0; i < a; i++) {
+        for (j = 0; j < b; j++) {
+            do {
+                numero = rand() % numero_maximo;
+            } while (controlador[numero]); 
+            bingo[i][j] = numero; 
+            controlador[numero] = 1; 
+        }
+    }
+    printf("cartela:\n");
+    for (i = 0; i < a; i++) {
+        for (j = 0; j < b; j++) {
+            printf("%2d ", bingo[i][j]); // Exibe o número com 2 espaços
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+13)Leia uma matriz 10 x 3 com as notas de 10 alunos em 3 provas. Em seguida, escreva o número de alunos cuja pior nota foi na prova 1, o número de alunos cuja pior nota foi na prova 2, e o número de alunos cuja pior nota foi na prova 3. Em caso de empate das piores notas de um aluno, o critério de desempate é arbitrário, mas o aluno deve ser contabilizado apenas uma vez.
+R.
+#include <stdio.h>
+#define aluno 10
+#define prova 3
+int main() {
+    float notas[aluno][prova];
+    int nota_baixa[prova] = {0}; 
+    int i, j;
+    printf("digite as notas dos alunos (10 alunos, 3 provas):\n");
+    for (i = 0; i < aluno; i++) {
+        for (j = 0; j < prova; j++) {
+            printf("nota do aluno %d na prova de numero %d: ", i + 1, j + 1);
+            scanf("%f", &notas[i][j]);
+        }
+    }
+    for (i = 0; i < aluno; i++) {
+        int indice_pior = 0;
+        float pior_nota = notas[i][0];
+        for (j = 1; j < prova; j++) {
+            if (notas[i][j] < pior_nota) {
+                pior_nota = notas[i][j];
+                indice_pior = j; 
+            }
+        }
+        nota_baixa[indice_pior]++;
+    }
+    printf("\nnúmero de alunos com pior nota na prova 1: %d\n", nota_baixa[0]);
+    printf("número de alunos com pior nota na prova 2: %d\n", nota_baixa[1]);
+    printf("número de alunos com pior nota na prova 3: %d\n", nota_baixa[2]);
+    return 0;
+}
+
+
+14)Faça um programa que permita ao usuário entrar com uma matriz de 3 x 3 números inteiros. Em seguida, gere um vetor pela soma dos números de cada coluna da matriz e mostrar na tela esse vetor. Por exemplo, a matriz:
+
+5 -8 10
+1 2 15
+25 10 7
+
+Vai gerar um vetor, onde cada posic¸ao˜ e a soma das colunas da matriz. A primeira posição será 5 + 1 + 25, e assim por diante:
+31 4 3
+
+R.
+#include <stdio.h>
+#define linha 3
+#define coluna 3
+int main() {
+    int matriz[linha][coluna];
+    int soma_coluna[coluna] = {0};
+    int i, j;
+    printf("digite os valoresda matriz 3x3:\n");
+    for (i = 0; i < linha; i++) {
+        for (j = 0; j < coluna; j++) {
+            printf("valor [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+    for (j = 0; j < coluna; j++) {
+        for (i = 0; i < linha; i++) {
+            soma_coluna[j] += matriz[i][j]; 
+        }
+    }
+    printf("\nvetor com a soma das colunas:\n");
+    for (j = 0; j < coluna; j++) {
+        printf("%d ", soma_coluna[j]);
+    }
+    printf("\n");
+    return 0;
+}
+
+
+15)Faça programa que leia uma matriz 3 x 6 com valores reais.
+
+
+a) Imprima a soma de todos os elementos das colunas ımpares.
+b) Imprima a média aritmética dos elementos da segunda e quarta colunas.
+c) Substitua os valores da sexta coluna pela soma dos valores das colunas 1 e 2.
+d) Imprima a matriz modificada.
+R.
+#include <stdio.h>
+#define linha 3
+#define coluna 6
+int main() {
+    float matriz[linha][coluna]; 
+    int i, j;
+    float soma_impar = 0.0;
+    float soma2coluna = 0.0, soma4coluna = 0.0;
+    printf("digite os valores reais da matriz 3x6:\n");
+    for (i = 0; i < linha; i++) {
+        for (j = 0; j < coluna; j++) {
+            printf("matriz [%d][%d]: ", i + 1, j + 1);
+            scanf("%f", &matriz[i][j]); 
+        }
+    }
+    // a) soma das colunas ímpares (1ª, 3ª e 5ª)
+    for (i = 0; i < linha; i++) {
+        soma_impar += matriz[i][0]; 
+        soma_impar += matriz[i][2]; 
+        soma_impar += matriz[i][4]; 
+    }
+    printf("\nSoma dos elementos das colunas ímpares: %.2f\n", soma_impar);
+
+    // b) média da segunda e quarta coluna
+    for (i = 0; i < linha; i++) {
+        soma2coluna += matriz[i][1]; 
+        soma4coluna += matriz[i][3];
+    }
+    float media_colunas = (soma2coluna + soma4coluna) / (2 * linha);
+    printf("Média aritmética dos elementos da segunda e quarta colunas: %.2f\n", media_colunas);
+
+    // c) substituir os valores da sexta coluna pela soma dos valores das colunas 1 e 2
+    for (i = 0; i < linha; i++) {
+        matriz[i][5] = matriz[i][0] + matriz[i][1];
+    }
+
+    // d) imprimir a matriz modificada
+    printf("\nMatriz diferenteona:\n");
+    for (i = 0; i < linha; i++) {
+        for (j = 0; j < coluna; j++) {
+            printf("%.2f ", matriz[i][j]); 
+        }
+        printf("\n"); 
+    }
+    return 0;
+}
+
+
+16)Faça um programa que leia duas matrizes 2 x 2 com valores reais. Ofereça ao usuário um menu de opções:
+
+a) Somar as duas matrizes
+b) Subtrair a primeira matriz da segunda
+c) Adicionar uma constante as duas matrizes
+d) Imprimir as matrizes
+R.
+#include <stdio.h>
+#define linha 2
+#define coluna 2
+void leitura_da_matriz(float matriz[linha][coluna], int numero) {
+    printf("informe os valores da matriz %d (valores reais):\n", numero);
+    for (int i = 0; i < linha; i++) {
+        for (int j = 0; j < coluna; j++) {
+            printf("matriz [%d][%d]: ", i + 1, j + 1);
+            scanf("%f", &matriz[i][j]);
+        }
+    }
+}
+void imprimir_matriz(float matriz[linha][coluna]) {
+    for (int i = 0; i < linha; i++) {
+        for (int j = 0; j < coluna; j++) {
+            printf("%.2f ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+void somar_matriz(float matriz1[linha][coluna], float matriz2[linha][coluna], float resultado[linha][coluna]) {
+    for (int i = 0; i < linha; i++) {
+        for (int j = 0; j < coluna; j++) {
+            resultado[i][j] = matriz1[i][j] + matriz2[i][j];
+        }
+    }
+}
+void subtrair_matriz(float matriz1[linha][coluna], float matriz2[linha][coluna], float resultado[linha][coluna]) {
+    for (int i = 0; i < linha; i++) {
+        for (int j = 0; j < coluna; j++) {
+            resultado[i][j] = matriz1[i][j] - matriz2[i][j];
+        }
+    }
+}
+
+int main() {
+    float matriz1[linha][coluna], matriz2[linha][coluna];
+    float resultado[linha][coluna];
+    float constante;
+    int opcao;
+    leitura_da_matriz(matriz1, 1);
+    leitura_da_matriz(matriz2, 2);
+    do {
+        printf("\nMenu:\n");
+        printf("1- Somar as matrizes\n");
+        printf("2- Subtrair as matrizes\n");
+        printf("3- Adicionar uma constante\n");
+        printf("4- Imprimir as matrizes\n");
+        printf("5- Sair\n");
+        printf("Escolher uma opção: ");
+        scanf("%d", &opcao);
+        switch (opcao) {
+            case 1:
+                somar_matriz(matriz1, matriz2, resultado);
+                printf("\nsoma:\n");
+                imprimir_matriz(resultado);
+                break;
+            case 2:
+                subtrair_matriz(matriz1, matriz2, resultado);
+                printf("\nsubtração:\n");
+                imprimir_matriz(resultado);
+                break;
+            case 3:
+                printf("Tente outro numero ");
+                break;
+            case 4:
+                printf("\nmatriz 1:\n");
+                imprimir_matriz(matriz1);
+                printf("\nmatriz 2:\n");
+                imprimir_matriz(matriz2);
+                break;
+            case 5:
+                printf("Vc saiu\n");
+                break;
+            default:
+                printf("erro! tente novamente.\n");
+        }
+    } while (opcao != 5);
+    return 0;
+}
+
+
+Nas duas primeiras opções uma terceira matriz 3 x 3 deve ser criada. Na terceira opção o valor da constante deve ser lido e o resultado da adição da constante deve ser armazenado na própria matriz.
+
+17)Faça um programa que leia duas matrizes A e B de tamanho 3 x 3 e calcule 𝐶 = 𝐴 ∗ 𝐵.
+R.
+#include <stdio.h>
+#define valor 3
+void lermatriz(int matriz[valor][valor], char nome) {
+    printf("informe os valores da matriz %c (inteiros):\n", nome);
+    for (int i = 0; i < valor; i++) {
+        for (int j = 0; j < valor; j++) {
+            printf("matri [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+void printmatriz(int matriz[valor][valor]) {
+    for (int i = 0; i < valor; i++) {
+        for (int j = 0; j < valor; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n\n");
+    }
+}
+void multmatrizes(int A[valor][valor], int B[valor][valor], int C[valor][valor]) {
+    for (int i = 0; i < valor; i++) {
+        for (int j = 0; j < valor; j++) {
+            C[i][j] = 0; 
+            for (int k = 0; k < valor; k++) {
+                C[i][j] += A[i][k] * B[k][j]; 
+            }
+        }
+    }
+}
+int main() {
+    int A[valor][valor], B[valor][valor], C[valor][valor];
+    lermatriz(A, 'A');
+    lermatriz(B, 'B');
+    multmatrizes(A, B, C);
+    printf("\nMatriz C (resultado de A * B):\n");
+    printmatriz(C);
+    return 0;
+}
+
+
+18) Faça um programa que leia uma matriz A de tamanho 3 x 3 e calcule 𝐵 = 𝐴2
+R.
+#include <stdio.h>
+#define val 3
+void scanmatriz(int matriz[val][val]) {
+    printf("infore os valores da matriz A :\n");
+    for (int i = 0; i < val; i++) {
+        for (int j = 0; j < val; j++) {
+            printf("amtriz [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+void printmatriz(int matriz[val][val]) {
+    for (int i = 0; i < val; i++) {
+        for (int j = 0; j < val; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+void potmatriz(int A[val][val], int B[val][val]) {
+    for (int i = 0; i < val; i++) {
+        for (int j = 0; j < val; j++) {
+            B[i][j] = 0; 
+            for (int m = 0; m < val; m++) {
+                B[i][j] += A[i][m] * A[j][m]; 
+            }
+        }
+    }
+}
+
+
+int main() {
+    int A[val][val], B[val][val];
+    scanmatriz(A);
+    potmatriz(A, B);
+    printf("\nMatriz B (resultado de A^2):\n");
+    printmatriz(B);
+    return 0;
+}
+
+
+
+
